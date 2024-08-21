@@ -1,0 +1,24 @@
+в react когда обновляется состояние основываясь на предыдущем состоянии, нужно использовать функцию, это крайне важно
+
+setIsEditing(!isEditing);  // WRONG
+
+const handleEdit = () => {
+  setIsEditing((editing) => !editing); //CORRECT
+}
+
+// это не сработает WRONG
+const handleEdit = () => {
+  setIsEditing(!isEditing); // schedule a state update to true
+  setIsEditing(!isEditing); // schedule a state update to true
+}
+
+isEditing может устареть на момент вызова setIsEditing,
+так как setIsEditing сработает не сразу а через некоторое время
+
+// это сработает, CORRECT
+const handleEdit = () => {
+  setIsEditing((editing) => !editing);
+  setIsEditing((editing) => !editing);
+}
+
+Такой подход гарантирует корректное обновление состояния даже если обновления происходят асинхронно или несколько раз подряд
