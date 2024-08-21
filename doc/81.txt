@@ -1,0 +1,18 @@
+if state is objects or arrays, it must
+be updated in an immutable way.
+
+если состояние object или array тогда
+вы имеете дело со ссылочным значением в JavaScript.
+Следовательно обновлять состояние, например для массива нужно так
+
+const initialGameBoard = [
+  [null, 'X', '0'],
+  [null, null, null],
+  [null, null, null]
+];
+
+setGameBoard((prevGameBoard) => {
+  const updatedBoard = [...prevGameBoard.map((innerArray) => [...innerArray])];
+  updatedBoard[rowIndex][colIndex] = 'X';
+  return updatedBoard;
+});
