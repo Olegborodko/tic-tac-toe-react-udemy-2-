@@ -1,0 +1,2 @@
+либо одно условие либо другое
+{(winner || hasDraw) && <GameOver winner={winner} />}

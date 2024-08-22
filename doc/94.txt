@@ -1,0 +1,10 @@
+dynamic set property
+
+function handlePlayerNameChange(symbol, newName) {
+  setPlayers(prev => {
+    return {
+      ...prev,
+      [symbol]: newName
+    }
+  })
+}
